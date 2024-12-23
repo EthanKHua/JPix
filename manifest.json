@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "JPix",
+    "version": "1.0",
+
+    "description": "Learn Japanese through Pixiv manga",
+
+    "content_scripts": [
+        {
+            "matches": ["*://www.pixiv.net/*"],
+            "js": ["jpix.js"]
+        }
+    ]
+}
