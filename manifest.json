@@ -3,7 +3,11 @@
     "name": "JPix",
     "version": "1.0",
 
-    "description": "Learn Japanese through Pixiv manga",
+    "description": "Learn Japanese through Pixiv manga.",
+
+    "action": {
+        "default_popup": "popup/"
+    },
 
     "content_scripts": [
         {
