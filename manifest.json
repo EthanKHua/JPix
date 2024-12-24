@@ -6,7 +6,7 @@
     "description": "Learn Japanese through Pixiv manga.",
 
     "action": {
-        "default_popup": "popup/"
+        "default_popup": "popup/jpix.html"
     },
 
     "content_scripts": [
