@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from manga_ocr import *
 from pixivpy3 import *
 
 app = Flask(__name__)
@@ -15,4 +16,7 @@ def get_image(id: int) -> list[str]:
     return urls
 
 if __name__ == "__main__":
-    print(get_image(125458699))
+    images = get_image(125458699)
+    print(images)
+    mocr = MangaOcr()
+    print(mocr('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png'))
