@@ -4,6 +4,11 @@ from manga_ocr import *
 from pixivpy3 import *
 
 app = Flask(__name__)
+    .route('/foo', methods = ['GET'])
+def foo():
+    x = request.args.get('x', default=1, type=int)
+    y = request.args.get('y', default=1, type=int)
+    return jsonify({'value': x + y})
 
 def get_image(id: int) -> list[str]:
     api = AppPixivAPI()
@@ -17,7 +22,8 @@ def get_image(id: int) -> list[str]:
     return urls
 
 if __name__ == "__main__":
-    images = get_image(125458699)
-    print(images)
-    mocr = MangaOcr()
-    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png')))
+    # images = get_image(125458699)
+    # print(images)
+    # mocr = MangaOcr()
+    # print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png')))
+    app.run(debug=True, port=5000)

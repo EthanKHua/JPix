@@ -1,5 +1,10 @@
 function recognize(x1, y1, x2, y2) {
-
+    fetch(`http://localhost:5000/foo?x=${x2}&y=${y2}`)
+        .then(response => response.json())
+        .then(data => {
+            document.title = data.value;
+        })
+        .catch(error => document.body.style.border = "10px solid green");
 }
 
 let mousePressed = false;
