@@ -1,3 +1,4 @@
+from PIL import Image
 from flask import Flask, jsonify, request
 from manga_ocr import *
 from pixivpy3 import *
@@ -19,4 +20,4 @@ if __name__ == "__main__":
     images = get_image(125458699)
     print(images)
     mocr = MangaOcr()
-    print(mocr('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png'))
+    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png')))
