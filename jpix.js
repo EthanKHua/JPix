@@ -15,7 +15,9 @@ let x2 = 0, y2 = 0;
 window.addEventListener("mousedown", (e) => {
     if(mousePressed) return;
     mousePressed = true;
-    x1 = e.clientX; y1 = e.clientY;
+    x1 = e.clientX; y1 = e.clientY + document.scrollingElement.scrollTop;
+    x2 = x1; y2 = y1;
+    
 });
 
 window.addEventListener("mousemove", (e) => {
@@ -26,7 +28,7 @@ window.addEventListener("mousemove", (e) => {
 window.addEventListener("mouseup", (e) => {
     if(!mousePressed) return;
     mousePressed = false;
-    x2 = e.clientX; y2 = e.clientY;
+    x2 = e.clientX; y2 = e.clientY + document.scrollingElement.scrollTop;
     recognize(x1, y1, x2, y2);
 });
 
