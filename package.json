@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "cors": "^2.8.5",
     "pixiv-api-client": "^0.27.0",
     "url-change-event": "^0.1.7"
   }

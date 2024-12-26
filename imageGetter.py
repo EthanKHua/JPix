@@ -1,14 +1,20 @@
 from PIL import Image
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from manga_ocr import *
 from pixivpy3 import *
 
 app = Flask(__name__)
-    .route('/foo', methods = ['GET'])
+cors = CORS(app)
+
+@app.route("/foo")
 def foo():
     x = request.args.get('x', default=1, type=int)
     y = request.args.get('y', default=1, type=int)
-    return jsonify({'value': x + y})
+    value = x + y
+    print(x, y)
+    print(value)
+    return jsonify({"result": value})
 
 def get_image(id: int) -> list[str]:
     api = AppPixivAPI()

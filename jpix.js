@@ -2,9 +2,10 @@ function recognize(x1, y1, x2, y2) {
     fetch(`http://localhost:5000/foo?x=${x2}&y=${y2}`)
         .then(response => response.json())
         .then(data => {
-            document.title = data.value;
+            document.title = data.result;
+            console.log(data.result);
         })
-        .catch(error => document.body.style.border = "10px solid green");
+        .catch(error => {console.log(error);});
 }
 
 let mousePressed = false;
@@ -19,7 +20,7 @@ window.addEventListener("mousedown", (e) => {
 
 window.addEventListener("mousemove", (e) => {
     if(!mousePressed) return;
-    document.title = e.clientX.toString() + ", " + e.clientY.toString();
+    // document.title = e.clientX.toString() + ", " + e.clientY.toString();
 });
 
 window.addEventListener("mouseup", (e) => {
