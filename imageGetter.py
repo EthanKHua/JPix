@@ -29,7 +29,6 @@ def get_image(id: int) -> list[str]:
 
 if __name__ == "__main__":
     # images = get_image(125458699)
-    # print(images)
-    # mocr = MangaOcr()
-    # print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\bady.png')))
-    app.run(port=5000)
+    mocr = MangaOcr()
+    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\al.jpg')))
+    # app.run(port=5000)
