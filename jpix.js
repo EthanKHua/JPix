@@ -14,7 +14,11 @@ let x1 = 0, y1 = 0;
 let x2 = 0, y2 = 0;
 
 window.addEventListener("keydown", (e) => {
-    if(keyPressed || e.code !== activation_key) return;
+    if(keyPressed) return;
+    if(e.ctrlKey !== ctrl) return;
+    if(e.altKey !== alt) return;
+    if(e.shiftKey !== shift) return;
+    if(e.code !== activation_key) return;
     keyPressed = true;
     x1 = x2; y1 = y2;
     update_rectangle();
@@ -27,11 +31,23 @@ window.addEventListener("mousemove", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
-    if(!keyPressed || e.code !== activation_key) return;
+    if(!keyPressed) return;
+    if(e.code !== activation_key) return;
     keyPressed = false;
     recognize(x1, y1, x2, y2);
     reset_rectangle();
 });
+
+window.addEventListener("popstate", (e) => {
+    console.log("boop", e);
+})
+
+let id = get_illust_id();
+
+window.setInterval(() => {
+    let curr_id = get_illust_id();
+    
+}, 500)
 
 function update_rectangle() {
     let x0 = Math.min(x1, x2);
