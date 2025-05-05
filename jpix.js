@@ -20,6 +20,7 @@ window.addEventListener("keydown", (e) => {
     if(e.shiftKey !== shift) return;
     if(e.code !== activation_key) return;
     keyPressed = true;
+    rect.style.border = "2px dashed red";
     x1 = x2; y1 = y2;
     update_rectangle();
 });
@@ -61,6 +62,7 @@ function update_rectangle() {
 }
 
 function reset_rectangle() {
+    rect.style.border = "0px dashed red";
     rect.style.top = "0px";
     rect.style.left = "0px";
     rect.style.width = "0px";
