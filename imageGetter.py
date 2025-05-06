@@ -25,20 +25,20 @@ def setid():
     print(illust_id)
 
 def get_image(id: int) -> list[str]:
+    load_dotenv()
     api = AppPixivAPI()
-    print("api " + os.getenv("PIXIV_KEY"))
     api.auth(refresh_token=os.getenv("PIXIV_KEY"))
     json_result = api.illust_detail(id)
     urls = []
     for i in json_result['illust']['meta_pages']:
-        url = i['image_urls']['original']
+        url = i['image_urls']['large']
         if url:
             urls.append(url)
     return urls
 
 if __name__ == "__main__":
-    load_dotenv()
     images = get_image(125458699)
     mocr = MangaOcr()
-    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\asdf.png')))
+    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
+    print(images)
     # app.run(port=5000)
