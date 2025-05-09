@@ -7,6 +7,8 @@ const createWindow = () => {
   })
 
   win.loadFile('index.html')
+  win.setFullScreen(true)
+  win.setSimpleFullScreen(true)
 }
 
 app.whenReady().then(() => {
