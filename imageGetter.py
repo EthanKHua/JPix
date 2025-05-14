@@ -40,7 +40,7 @@ def get_image(id: int) -> list[str]:
     return urls
 
 if __name__ == "__main__":
-    images = get_image(125458699)
+    images = get_image(128482257)
     # mocr = MangaOcr()
     # print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
     # for image in images:

@@ -1,9 +1,27 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
+const path = require('path')
+const fs = require('fs')
+
+async function handleGetImages() {
+  const imgs = [];
+  await fs.promises.readdir('images')
+    .then(res => {
+      for(const image of res) {
+        imgs.push(image);
+        console.log(imgs);
+      }
+    })
+  return imgs;
+}
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
 
   win.loadFile('index.html')
@@ -12,7 +30,19 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  ipcMain.handle('get-images', handleGetImages);
+  createWindow();
+})
+
+ipcMain.on('get-images', (event) => {
+  const imgs = [];
+  fs.promises.readdir('images')
+    .then(res => {
+      for(const image of res) {
+        imgs.push(image);
+      }
+    })
+  
 })
 
 // const rect = document.createElement("div");
