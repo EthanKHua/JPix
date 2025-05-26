@@ -1,6 +1,3 @@
-const txt = document.getElementById("test");
-txt.innerText = "hi";
-
 window.electronAPI.getImages()
     .then(images => {
         for(const image of images) {
@@ -14,7 +11,7 @@ window.electronAPI.getImages()
 const rect = document.createElement("div");
 rect.style.position = "absolute";
 rect.style.backgroundColor = "rgba(0,0,0,0)"; // transparent
-rect.style.border = "2px dashed red";
+rect.style.border = "0px dashed red";
 document.body.appendChild(rect);
 
 const activation_key = "KeyQ";
@@ -100,5 +97,5 @@ function get_illust_id() {
 }
 
 const illust_id = get_illust_id();
-document.body.style.border = "10px solid green";
-if (illust_id === "122052434") {document.body.style.border = "10px solid blue";}
+// document.body.style.border = "10px solid green";
+// if (illust_id === "122052434") {document.body.style.border = "10px solid blue";}

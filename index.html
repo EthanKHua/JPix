@@ -5,18 +5,22 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self'; connect-src http://localhost:5000/"
     />
     <meta
       http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self'; connect-src http://localhost:5000/"
     />
-    <title>goon</title>
+    <title>JPix</title>
   </head>
   <body>
-    <h1>a</h1>
-    <p id="test">edge me till i edge</p>
-    <div id="images" contenteditable="true"></div>
-    <script src="image.js"></script>
+    <!-- <h1 id="search-prompt">Enter a pixiv id:</h1> -->
+    <input type="search" id="manga-search" placeholder="Enter a pixiv id..."/>
+
+    <button id="search-button">Search</button>
+
+    <a id="image-href" href="images.html"></a>
+
+    <script src="search.js"></script>
   </body>
 </html>

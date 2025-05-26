@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import sys
 from flask import Flask, jsonify, request
 from flask.cli import load_dotenv
 from flask_cors import CORS
@@ -26,7 +27,9 @@ def setid():
     illust_id = request.args.get('id')
     print(illust_id)
 
-def get_image(id: int) -> list[str]:
+@app.route("/dlimg", methods=["POST"])
+def get_image():
+    id = request.get_json(force=True)['id']
     load_dotenv()
     api = AppPixivAPI()
     api.auth(refresh_token=os.getenv("PIXIV_KEY"))
@@ -37,10 +40,9 @@ def get_image(id: int) -> list[str]:
         if url:
             urls.append(url)
             api.download(url, path=os.path.join(os.path.curdir, "images"), name=url.split('/')[-1])
-    return urls
+    return jsonify({"id": urls})
 
 if __name__ == "__main__":
-    images = get_image(128482257)
     # mocr = MangaOcr()
     # print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
     # for image in images:
@@ -50,4 +52,4 @@ if __name__ == "__main__":
     #         shutil.copyfileobj(response.raw, out_file)
     #     del response
     #     print(image)
-    # app.run(port=5000)
+    app.run(port=5000, debug=True)
