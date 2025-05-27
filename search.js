@@ -4,8 +4,12 @@ async function search() {
     console.log(id);
     await fetch(`http://localhost:5000/dlimg`, {
         method: "POST",
-        body: JSON.stringify({id: id})
-    }).then(response => document.getElementById("image-href").click());
+        body: JSON.stringify({id: id})})
+    .then(response => document.getElementById("image-href").click())
+    .catch(error => {
+        console.log(error);
+        document.getElementById("img-error-href").click();
+    });
 }
 
 var searchBar = document.getElementById("manga-search");

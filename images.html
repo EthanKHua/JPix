@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="theme-light.css">
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
@@ -15,7 +16,13 @@
   </head>
   <body>
     <p id="test">edge me till i edge</p>
-    <div id="images" contenteditable="true"></div>
+    <div id="content" class="container">
+      <div id="images" class="innerContent"></div>
+      <div id="desc" class="innerContent">
+        <h1>Translation</h1>
+        <p>placeholder</p>
+      </div>
+    </div>
     <script src="image.js"></script>
   </body>
 </html>
