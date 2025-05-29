@@ -1,18 +1,18 @@
 .container {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .innerContent {
-    width: 50%;
-    flex: 1;
+    background-color: aqua;
 }
 /* #images {
     width: 10px;
 } */
 img {
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    max-height: 100vh;
+    max-width: 100vw;
     object-fit: contain;
     float: left;
 }

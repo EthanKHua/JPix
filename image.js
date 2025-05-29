@@ -1,11 +1,21 @@
+var imgY = []
+
+function recordImgY() {
+    imgY.push(this.height);
+    console.log(this.height);
+    if(imgY.length > 1) imgY[imgY.length - 1] += imgY[imgY.length - 2];
+}
+
 window.electronAPI.getImages()
     .then(images => {
         for(const image of images) {
             console.log(image);
             const img = document.createElement("img");
+            img.onload = recordImgY;
             img.src = "images/" + image;
             document.getElementById("images").appendChild(img);
         }
+        console.log(imgY);
     })
 
 const rect = document.createElement("div");
@@ -48,10 +58,6 @@ window.addEventListener("keyup", (e) => {
     recognize(x1, y1, x2, y2);
     reset_rectangle();
 });
-
-window.addEventListener("popstate", (e) => {
-    console.log("boop", e);
-})
 
 let id = get_illust_id();
 
