@@ -14,6 +14,18 @@ async function handleGetImages() {
   return imgs;
 }
 
+async function deleteImages() {
+  await fs.promises.readdir('images')
+    .then(res => {
+      for(const image of res) {
+        fs.unlink(path.join('images', image), (err) => {
+          if(err) throw err;
+          console.log('unlinked %s', image);
+        });
+      }
+    })
+}
+
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 1600,
@@ -32,6 +44,11 @@ const createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.handle('get-images', handleGetImages);
   createWindow();
+})
+
+app.on('window-all-closed', () => {
+  deleteImages();
+  app.quit();
 })
 
 ipcMain.on('get-images', (event) => {

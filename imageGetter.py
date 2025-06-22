@@ -43,8 +43,8 @@ def get_image():
     return jsonify({"id": urls})
 
 if __name__ == "__main__":
-    # mocr = MangaOcr()
-    # print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
+    mocr = MangaOcr()
+    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
     # for image in images:
     #     response = requests.get(image, headers={'Referer': "https://www.pixiv.net/"}, stream=True)
     #     local_filename = image.split('/')[-1]
