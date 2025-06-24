@@ -22,10 +22,9 @@ def foo():
     value = x + y
     return jsonify({"result": value})
 
-@app.route("/setid", methods=["POST"])
-def setid():
-    illust_id = request.args.get('id')
-    print(illust_id)
+@app.route("/ocr", methods=["GET"])
+def recognize():
+    print(mocr(Image.open(os.path.join("temp", "ss.png"), formats=['png'])), file=sys.stderr)
 
 @app.route("/dlimg", methods=["POST"])
 def get_image():
@@ -44,7 +43,6 @@ def get_image():
 
 if __name__ == "__main__":
     mocr = MangaOcr()
-    print(mocr(Image.open('C:\\Users\\ethan\\Pictures\\Screenshots\\e.png')))
     # for image in images:
     #     response = requests.get(image, headers={'Referer': "https://www.pixiv.net/"}, stream=True)
     #     local_filename = image.split('/')[-1]

@@ -6,6 +6,7 @@ function recordImgY() {
     if(imgY.length > 1) imgY[imgY.length - 1] += imgY[imgY.length - 2];
 }
 
+// TODO: fix bug with image ordering
 window.electronAPI.getImages()
     .then(images => {
         for(const image of images) {
@@ -86,12 +87,9 @@ function reset_rectangle() {
 }
 
 function recognize(x1, y1, x2, y2) {
-    fetch(`http://localhost:5000/foo?x=${x2}&y=${y2}`)
-        .then(response => response.json())
-        .then(data => {
-            document.title = data.result;
-        })
-        .catch(error => {console.log(error);});
+    console.log(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    window.electronAPI.captureRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    fetch("http://localhost:5000/ocr")
 }
 
 function get_illust_id() {
