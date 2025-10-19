@@ -6,6 +6,8 @@ from flask.cli import load_dotenv
 from flask_cors import CORS
 from manga_ocr import *
 from pixivpy3 import *
+import dotenv
+import pixiv_auth
 import requests
 import shutil
 
