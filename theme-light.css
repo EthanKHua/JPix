@@ -20,10 +20,10 @@ img {
 }
 
 .h1 {
-    font-family: "Courier New", sans-serif;
+    font-family: "Comic Sans MS", sans-serif;
 }
 .h2 {
-    font-family: "Century Gothic", sans-serif;
+    font-family: "Comic Sans MS", sans-serif;
 }
 
 body,html {
@@ -51,14 +51,22 @@ body,html {
     /*justify-content: center;*/
     margin-left: 25%;
     margin-right: 25%;
-    border-radius: 20px;
+    border-radius: 25px;
+}
+
+#manga-search {
+    border-radius: 25px;
+    width: 300px;
+    height: 50px;
+    padding-left: 20px;
+    margin-right: 10px;
 }
 
 #search-button {
     background-color: #0096FA;
-    border: thin solid rgba(47,50,51,0.8);
-    width: 100px;
-    height: 25px;
-    padding: 5px;
+    border: none;
+    width: 150px;
+    height: 50px;
+    margin-left: 10px;
     border-radius: 25px;
 }
