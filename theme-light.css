@@ -1,3 +1,4 @@
+
 .container {
     display: flex;
     padding: 5px;
@@ -15,18 +16,19 @@ img {
     float: left;
 }
 
-.page {
-    /*font-family: sans-serif;*/
-}
+/*.page {*/
+/*    font-family: "Comic Sans MS", sans-serif;*/
+/*}*/
 
-.h1 {
-    font-family: "Comic Sans MS", sans-serif;
-}
-.h2 {
-    font-family: "Comic Sans MS", sans-serif;
-}
+/*.h1 {*/
+/*    font-family: "Comic Sans MS", sans-serif;*/
+/*}*/
+/*.h2 {*/
+/*    font-family: "Comic Sans MS", sans-serif;*/
+/*}*/
 
 body,html {
+    font-family: "Segoe UI", sans-serif;
     background-image: url("assets/bg.jpg");
     background-repeat: no-repeat;
     background-position: left;
@@ -39,6 +41,7 @@ body,html {
 }
 
 .searchBox {
+    font-family: "Segoe UI", sans-serif;
     max-width: 50%;
     min-height: 60%;
     max-height: 80%;
@@ -63,10 +66,27 @@ body,html {
 }
 
 #search-button {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
     background-color: #0096FA;
     border: none;
     width: 150px;
     height: 50px;
     margin-left: 10px;
     border-radius: 25px;
+    padding-bottom: 2px;
+}
+
+#search-button:hover {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #0096FA;
+    border: none;
+    width: 150px;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 25px;
+    padding-bottom: 2px;
 }
