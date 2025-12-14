@@ -1,3 +1,5 @@
+// import {DIFF_DELETE, diff_match_patch} from "diff-match-patch";
+
 var imgY = []
 
 function recordImgY() {
@@ -86,10 +88,44 @@ function reset_rectangle() {
     rect.style.height = "0px";
 }
 
-function recognize(x1, y1, x2, y2) {
+// function furigana(japanese, hiragana) {
+//     const rp1 = document.createElement('rp')
+//     rp1.innerText
+//     let dmp = new diff_match_patch()
+//     let diffs = dmp.diff_main(japanese, hiragana)
+//     for(let diff in diffs) {
+//         if(diff[0] === DIFF_DELETE) {
+//
+//         }
+//     }
+// }
+
+
+async function recognize(x1, y1, x2, y2) {
     console.log(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
-    window.electronAPI.captureRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    await window.electronAPI.captureRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
     fetch("http://localhost:5000/ocr")
+        .then(data => data.json())
+        .then(json => {
+            console.log(json.data)
+            for(let t in json.data) {
+                let item = json.data[t]
+                let entry = document.createElement('div')
+                let name = document.createElement('ruby')
+
+                name.innerHTML = item.slug + "<rp>(</rp><rt>" + item.japanese[0].reading + "</rt><rp>)</rp>"
+
+                let meaning = document.createElement('p')
+                let defns = item.senses[0].english_definitions
+                meaning.innerText = "Meanings: " + defns[0]
+                for(let i = 1; i < defns.length; i++) {
+                    meaning.innerText += "; " + defns[i]
+                }
+
+                entry.append(name, meaning)
+                document.getElementById("translations").appendChild(entry)
+            }
+        })
 }
 
 function get_illust_id() {
