@@ -70,12 +70,12 @@ if __name__ == "__main__":
             reading
         senses
             english_definitions
-        parts_of_speech
-        links
-        tags
-        restrictions
-        see_also
-        antonyms
-        source
-        info
+            parts_of_speech
+            links
+            tags
+            restrictions
+            see_also
+            antonyms
+            source
+            info
     '''

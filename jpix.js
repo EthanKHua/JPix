@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron/main')
 const path = require('path')
 const fs = require('fs');
 const { webContents } = require('electron');
+const { performance } = require('perf_hooks');
 
 async function handleGetImages() {
   const imgs = [];
@@ -12,6 +13,22 @@ async function handleGetImages() {
       }
     })
   return imgs;
+}
+
+async function handleCapture(event, x, y, width, height) {
+    console.log(x, y, width, height);
+    const win = BrowserWindow.getFocusedWindow();
+    const startTime = performance.now()
+    return win.webContents.capturePage({x: x, y: y, width: width, height: height})
+        .then(img => {
+            console.log(img);
+            fs.writeFile(path.join('temp', 'ss.png'), img.toPNG(), "utf8", (err) => {
+                if (err) console.log(err);
+                console.log("captured")
+            });
+            console.log(performance.now() - startTime)
+            return true
+        })
 }
 
 function deleteImages() {
@@ -44,6 +61,7 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   ipcMain.handle('get-images', handleGetImages);
+  ipcMain.handle('capture', handleCapture)
   createWindow();
 })
 
@@ -53,26 +71,6 @@ app.on('window-all-closed', () => {
 
 app.on('before-quit', () => deleteImages());
 
-ipcMain.on('capture', (event, x, y, width, height) => {
-  console.log(x, y, width, height);
-  const win = BrowserWindow.getFocusedWindow();
-  win.webContents.capturePage({x: x, y: y, width: width, height: height})
-    .then(img => {
-      console.log(img);
-      fs.writeFile(path.join('temp', 'ss.png'), img.toPNG(), "utf8", (err) => {if(err) console.log(err); console.log("captured")});
-    })
-})
-
-ipcMain.on('get-images', (event) => {
-  const imgs = [];
-  fs.promises.readdir('images')
-    .then(res => {
-      for(const image of res) {
-        imgs.push(image);
-      }
-    })
-  
-})
 
 // const rect = document.createElement("div");
 // rect.style.position = "absolute";
